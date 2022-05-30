@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\progr\source\repos\CoontrolBuisnesTile\obj\Debug\
+C:\Users\progr\Desktop\ContronBuisness\obj\Debug\
 CoontrolBuisnesTile
 none
 false
 DEBUG;TRACE
-C:\Users\progr\source\repos\CoontrolBuisnesTile\App.xaml
-2-223561199
-
-6-1432403727
-13-1310406943
-MainWindow.xaml;Pages\StartWorkPage.xaml;
+C:\Users\progr\Desktop\ContronBuisness\App.xaml
+61107590007
+2-1080765
+20-908332516
+19948228054
+MainWindow.xaml;Pages\RegistrationPage.xaml;Pages\SalaryPage.xaml;Pages\StartWorkPage.xaml;Pages\UsersTrafficPage.xaml;Windows\AuthWindow.xaml;
 
 False
 

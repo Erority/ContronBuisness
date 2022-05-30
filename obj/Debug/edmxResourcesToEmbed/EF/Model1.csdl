@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BeControlDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BeControlDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Busyness" EntityType="BeControlDBModel.Busyness" />
+    <EntitySet Name="Employee" EntityType="BeControlDBModel.Employee" />
+    <EntitySet Name="Gender" EntityType="BeControlDBModel.Gender" />
+    <EntitySet Name="Specialization" EntityType="BeControlDBModel.Specialization" />
+    <EntitySet Name="sysdiagrams" EntityType="BeControlDBModel.sysdiagrams" />
+    <EntitySet Name="WorkTraffic" EntityType="BeControlDBModel.WorkTraffic" />
+    <AssociationSet Name="FK_Employee_Busyness" Association="BeControlDBModel.FK_Employee_Busyness">
+      <End Role="Busyness" EntitySet="Busyness" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Gender" Association="BeControlDBModel.FK_Employee_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Specialization" Association="BeControlDBModel.FK_Employee_Specialization">
+      <End Role="Specialization" EntitySet="Specialization" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkTraffic_Employee" Association="BeControlDBModel.FK_WorkTraffic_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="WorkTraffic" EntitySet="WorkTraffic" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Busyness">
+    <Key>
+      <PropertyRef Name="IDBusy" />
+    </Key>
+    <Property Name="IDBusy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BusyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="HoursForWeek" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="BeControlDBModel.FK_Employee_Busyness" FromRole="Busyness" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="IDEmployee" />
+    </Key>
+    <Property Name="IDEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="MName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IDBusy" Type="Int32" Nullable="false" />
+    <Property Name="PassSeries" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="PassNumber" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="IDSpec" Type="Int32" Nullable="false" />
+    <Property Name="IDGender" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Busyness" Relationship="BeControlDBModel.FK_Employee_Busyness" FromRole="Employee" ToRole="Busyness" />
+    <NavigationProperty Name="Gender" Relationship="BeControlDBModel.FK_Employee_Gender" FromRole="Employee" ToRole="Gender" />
+    <NavigationProperty Name="Specialization" Relationship="BeControlDBModel.FK_Employee_Specialization" FromRole="Employee" ToRole="Specialization" />
+    <NavigationProperty Name="WorkTraffic" Relationship="BeControlDBModel.FK_WorkTraffic_Employee" FromRole="Employee" ToRole="WorkTraffic" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="IDGender" />
+    </Key>
+    <Property Name="IDGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GenderName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="BeControlDBModel.FK_Employee_Gender" FromRole="Gender" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Specialization">
+    <Key>
+      <PropertyRef Name="IDSpec" />
+    </Key>
+    <Property Name="IDSpec" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameSpec" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CostPerHOur" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+    <NavigationProperty Name="Employee" Relationship="BeControlDBModel.FK_Employee_Specialization" FromRole="Specialization" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="WorkTraffic">
+    <Key>
+      <PropertyRef Name="IDWorkTraffic" />
+    </Key>
+    <Property Name="IDWorkTraffic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDEmployee" Type="Int32" Nullable="false" />
+    <Property Name="StrartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Employee" Relationship="BeControlDBModel.FK_WorkTraffic_Employee" FromRole="WorkTraffic" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK_Employee_Busyness">
+    <End Type="BeControlDBModel.Busyness" Role="Busyness" Multiplicity="1" />
+    <End Type="BeControlDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Busyness">
+        <PropertyRef Name="IDBusy" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="IDBusy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Gender">
+    <End Type="BeControlDBModel.Gender" Role="Gender" Multiplicity="1" />
+    <End Type="BeControlDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="IDGender" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="IDGender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Specialization">
+    <End Type="BeControlDBModel.Specialization" Role="Specialization" Multiplicity="1" />
+    <End Type="BeControlDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialization">
+        <PropertyRef Name="IDSpec" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="IDSpec" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkTraffic_Employee">
+    <End Type="BeControlDBModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="BeControlDBModel.WorkTraffic" Role="WorkTraffic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="IDEmployee" />
+      </Principal>
+      <Dependent Role="WorkTraffic">
+        <PropertyRef Name="IDEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,258 @@
+﻿<Page x:Class="CoontrolBuisnesTile.Pages.RegistrationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CoontrolBuisnesTile.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RegistrationPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Text="Регистрация" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   x:Name="tbStart"
+                   FontSize="24"/>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/> 
+                <ColumnDefinition Width="*"/> 
+                <ColumnDefinition Width="*"/> 
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock 
+            Grid.Row="0"
+            Foreground="Black"
+            TextWrapping="Wrap"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Имя"
+            FontSize="16"/>
+
+            <TextBox    
+                x:Name="txtBoxFName"
+            FontSize="14"
+            Grid.Row="4"
+            Style="{DynamicResource TextBoxStyle1}" />
+
+
+
+            <TextBlock 
+            Grid.Row="0"
+            Grid.Column="1"
+            Foreground="Black"
+            TextWrapping="Wrap"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Фамилия"
+            FontSize="16"/>
+
+            <TextBox    
+                x:Name="txtBoxLName"
+                Margin="4 0"
+                Grid.Column="1"
+            FontSize="14"
+            Grid.Row="4"
+            Style="{DynamicResource TextBoxStyle1}" />
+
+
+
+            <TextBlock 
+            Grid.Row="0"
+                Grid.Column="2"
+            Foreground="Black"
+            TextWrapping="Wrap"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Отчество"
+            FontSize="16"/>
+
+            <TextBox    
+                x:Name="txtBoxMName"
+                Grid.Column="2"
+                Margin="4 0"
+            FontSize="14"
+            Grid.Row="4"
+            Style="{DynamicResource TextBoxStyle1}" />
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock 
+            Grid.Row="0"
+            Foreground="Black"
+            TextWrapping="Wrap"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Серия паспорта"
+            FontSize="16"/>
+
+            <TextBox    
+                
+                x:Name="txtBoxPassportSerial"
+            FontSize="18"
+            Grid.Row="4"
+            Style="{DynamicResource TextBoxStyle1}" />
+
+
+
+            <TextBlock 
+            Grid.Row="0"
+            Grid.Column="1"
+            Foreground="Black"
+            TextWrapping="Wrap"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Номер паспорта"
+            FontSize="16"/>
+
+            <TextBox    
+                x:Name="txtBoxPassportNumber"
+                Margin="4 0"
+                Grid.Column="1"
+            FontSize="14"
+            Grid.Row="4"
+            Style="{DynamicResource TextBoxStyle1}" />
+        </Grid>
+
+        <StackPanel Grid.Row="3" Margin="0 3 0 0">
+            <TextBlock 
+            Grid.Row="0"
+            Grid.Column="1"
+            Foreground="Black"
+            TextWrapping="Wrap"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Занятость"
+            FontSize="16"/>
+            <ComboBox 
+                x:Name="cmbBusy"
+                Margin="0 3 0 0"
+            FontSize="14"
+                Width="200"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Margin="0 3 0 0">
+            <TextBlock 
+            Grid.Row="0"
+            Grid.Column="1"
+            Foreground="Black"
+            TextWrapping="Wrap"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Специлизация"
+            FontSize="16"/>
+            <ComboBox 
+                x:Name="cmbSpec"
+                Margin="0 3 0 0"
+            FontSize="14"
+                Width="200"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="5" Margin="0 3 0 0">
+            <TextBlock 
+            Grid.Row="0"
+            Grid.Column="1"
+            Foreground="Black"
+            TextWrapping="Wrap"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Пол"
+            FontSize="16"/>
+            <ComboBox 
+                x:Name="cmbGender"
+                Margin="0 3 0 0"
+            FontSize="14"
+                Width="200"/>
+        </StackPanel>
+
+        <Grid Grid.Row="6">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+
+
+            <TextBlock 
+            Grid.Row="0"
+            Grid.Column="0"
+            Foreground="Black"
+            TextWrapping="Wrap"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Логин"
+            FontSize="16"/>
+
+            <TextBox    
+                x:Name="txtLogin"
+                Margin="4 0"
+                Grid.Column="0"
+            FontSize="14"
+            Grid.Row="4"
+            Style="{DynamicResource TextBoxStyle1}" />
+
+
+            <TextBlock 
+            Grid.Row="0"
+            Grid.Column="1"
+            Foreground="Black"
+            TextWrapping="Wrap"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Пароль"
+            FontSize="16"/>
+
+            <TextBox    
+                x:Name="txtPassword"
+                Margin="4 0"
+                Grid.Column="1"
+            FontSize="14"
+            Grid.Row="4"
+            Style="{DynamicResource TextBoxStyle1}" />
+        </Grid>
+
+        <Button Style="{DynamicResource ButtonStyle1}" 
+                Margin="250 10"
+                x:Name="btnReg"
+                Click="btnReg_Click"
+                Grid.Row="7"
+                Background="#96BB7C"
+                Content="Зарегестрировать"
+                />
+    </Grid>
+</Page>

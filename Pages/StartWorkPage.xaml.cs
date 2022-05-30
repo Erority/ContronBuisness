@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using CoontrolBuisnesTile.EF;
 
 namespace CoontrolBuisnesTile.Pages
 {
@@ -23,34 +24,45 @@ namespace CoontrolBuisnesTile.Pages
     {
 
         DispatcherTimer _timer;
-        int _time = 15;
-
+        TimeSpan _time;
         public StartWorkPage()
         {
             InitializeComponent();
         }
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
+            _time = TimeSpan.FromHours(ClassSave.employee.Busyness.HoursForWeek/7);
 
-            btnStart.Visibility = Visibility.Hidden;
-            _timer = new DispatcherTimer();
-            _timer.Interval = new TimeSpan(0, 0, 1);
-            _timer.Tick += Timer_Tick;
+            ClassSave.firstButton.IsEnabled = false;
+            ClassSave.secondButton.IsEnabled = false;
+            this.btnStart.IsEnabled = false;
+
+            WorkTraffic workTraffic = new WorkTraffic();
+            workTraffic.StrartTime = DateTime.Now;
+            workTraffic.IDEmployee = ClassSave.employee.IDEmployee;
+
+            _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                tbStart.Text = "До рабочего дня осталось:  " +  _time.ToString("c");
+                if (_time == TimeSpan.Zero)
+                {
+                    ClassSave.firstButton.IsEnabled = true;
+                    ClassSave.secondButton.IsEnabled = true;
+                    this.btnStart.IsEnabled = true;
+
+                    MessageBox.Show("Рабочий день окончен");
+
+                    workTraffic.EndTime = DateTime.Now;
+
+                    ClassSave.context.WorkTraffic.Add(workTraffic);
+
+                    _timer.Stop();
+                }
+                _time = _time.Add(TimeSpan.FromSeconds(-1));
+
+            }, Application.Current.Dispatcher);
+
             _timer.Start();
-        }
-
-        void Timer_Tick(object sender, EventArgs e)
-        {
-            if(_time > 0)
-            {
-                _time--;
-                tbStart.Text = $"{_time}";
-            } 
-            else
-            {
-                _timer.Stop();
-                MessageBox.Show("STOP");
-            }
         }
     }
 }

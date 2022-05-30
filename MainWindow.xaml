@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:CoontrolBuisnesTile"
         mc:Ignorable="d"
         Background="#E3DFC8"
-        Title="MainWindow" Height="600" Width="900">
+        Title="MainWindow" Height="600" Width="900"
+        MinWidth="900"
+        MinHeight="700">
     
     <Grid>
         <Grid.RowDefinitions>
@@ -33,18 +35,29 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="btnStart"
                     Margin="8"
                     Background="#96BB7C"
-                    Content="Начать"
+                    Content="Начать работу"
                     Click="btnStart_Click"
                 />
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="btnCheck"
+                    Margin="8"
+                    Grid.Row="1"
+                    Background="#96BB7C"
+                    Content="Посмотреть зп"
+                    Click="btnCheck_Click"
+                />
+            
         </Grid>
 
 
         <Frame x:Name="MainFrame"
+               
                NavigationUIVisibility="Hidden"
                Grid.Column="1"
                Grid.Row="1"/>

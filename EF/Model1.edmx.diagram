@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2dc6965fd63e4157b5b19f1ec2b40288" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="BeControlDBModel.Busyness" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BeControlDBModel.Employee" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="BeControlDBModel.Gender" Width="1.5" PointX="0.75" PointY="6.375" />
+        <EntityTypeShape EntityType="BeControlDBModel.Specialization" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="BeControlDBModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="7.25" />
+        <EntityTypeShape EntityType="BeControlDBModel.WorkTraffic" Width="1.5" PointX="5.25" PointY="3.5" />
+        <AssociationConnector Association="BeControlDBModel.FK_Employee_Busyness" />
+        <AssociationConnector Association="BeControlDBModel.FK_Employee_Gender" />
+        <AssociationConnector Association="BeControlDBModel.FK_Employee_Specialization" />
+        <AssociationConnector Association="BeControlDBModel.FK_WorkTraffic_Employee" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

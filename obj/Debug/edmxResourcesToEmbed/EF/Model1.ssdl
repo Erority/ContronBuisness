@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BeControlDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Busyness">
+    <Key>
+      <PropertyRef Name="IDBusy" />
+    </Key>
+    <Property Name="IDBusy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="HoursForWeek" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="IDEmployee" />
+    </Key>
+    <Property Name="IDEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="LName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="MName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IDBusy" Type="int" Nullable="false" />
+    <Property Name="PassSeries" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="PassNumber" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="IDSpec" Type="int" Nullable="false" />
+    <Property Name="IDGender" Type="int" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="IDGender" />
+    </Key>
+    <Property Name="IDGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GenderName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Specialization">
+    <Key>
+      <PropertyRef Name="IDSpec" />
+    </Key>
+    <Property Name="IDSpec" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameSpec" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CostPerHOur" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="WorkTraffic">
+    <Key>
+      <PropertyRef Name="IDWorkTraffic" />
+    </Key>
+    <Property Name="IDWorkTraffic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDEmployee" Type="int" Nullable="false" />
+    <Property Name="StrartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Employee_Busyness">
+    <End Role="Busyness" Type="Self.Busyness" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Busyness">
+        <PropertyRef Name="IDBusy" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="IDBusy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="IDGender" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="IDGender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Specialization">
+    <End Role="Specialization" Type="Self.Specialization" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialization">
+        <PropertyRef Name="IDSpec" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="IDSpec" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkTraffic_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="WorkTraffic" Type="Self.WorkTraffic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="IDEmployee" />
+      </Principal>
+      <Dependent Role="WorkTraffic">
+        <PropertyRef Name="IDEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BeControlDBModelStoreContainer">
+    <EntitySet Name="Busyness" EntityType="Self.Busyness" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkTraffic" EntityType="Self.WorkTraffic" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Employee_Busyness" Association="Self.FK_Employee_Busyness">
+      <End Role="Busyness" EntitySet="Busyness" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Gender" Association="Self.FK_Employee_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Specialization" Association="Self.FK_Employee_Specialization">
+      <End Role="Specialization" EntitySet="Specialization" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkTraffic_Employee" Association="Self.FK_WorkTraffic_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="WorkTraffic" EntitySet="WorkTraffic" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
