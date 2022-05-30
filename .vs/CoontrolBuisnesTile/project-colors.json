@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "01a6b47e-3585-4f88-a1d2-82fa7f1dec3b": {
+      "ProjectGuid": "01a6b47e-3585-4f88-a1d2-82fa7f1dec3b",
+      "DisplayName": "CoontrolBuisnesTile",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
